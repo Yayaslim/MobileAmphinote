@@ -14,10 +14,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
 
 
-        final EditText Email = (EditText) findViewById(R.id.Email);
-        final EditText Password = (EditText) findViewById(R.id.Password);
-        final Button Blogin = (EditText) findViewById(R.id.Blogin);
-        final Button BRegister = (EditText) findViewById(R.id.BRegister);
+
+        final Button BRegister = findViewById(R.id.create_account_button);
 
         BRegister.setOnClickListener(new View.OnClickListener() {
             @Override
