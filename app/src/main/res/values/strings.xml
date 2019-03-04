@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Amphinote</string>
-    <string name="username">Identifiant</string>
     <string name="password">Mot de Passe</string>
     <string name="login_button">Se connecter</string>
     <string name="create_account_button">Creer un Compte</string>
     <string name="logo_description">Logo Amphinote</string>
+    <string name="name">Prenom</string>
+    <string name="lastname">Nom</string>
+    <string name="age">Age</string>
+    <string name="mail">Adresse Mail</string>
+
+
 </resources>
