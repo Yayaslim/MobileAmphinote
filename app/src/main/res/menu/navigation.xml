@@ -3,15 +3,15 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
-        android:title="Ajouter"/>
+        android:title="Accueil"/>
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/your_note"
         android:icon="@drawable/ic_your_note"
         android:title="Vos Notes"/>
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/add_note"
         android:icon="@drawable/ic_add_note"
         android:title="Ajouter"/>
 </menu>
