@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="register_activity"
+            type="fr.l3miage.amphinote.RegisterActivity">
+
+        </variable>
+    </data>
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -32,7 +41,7 @@
         app:srcCompat="@mipmap/logo_amphinote" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/nom"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/prenom"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -63,10 +72,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/nom" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/age"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -79,10 +88,10 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/prenom" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/pwd"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -95,10 +104,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/mail"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -111,10 +120,10 @@
         android:inputType="textWebEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/pwd" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/create_account_button"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -128,6 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/mail" />
 
 </android.support.constraint.ConstraintLayout>
+</layout>

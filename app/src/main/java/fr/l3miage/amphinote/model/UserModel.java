@@ -7,8 +7,16 @@ public class UserModel {
     private String lastname;
     private Integer age;
     private String email;
-    private String tel;
+    private String password;
     private Integer id;
+
+    public UserModel(String username, String lastname, Integer age, String email, String password) {
+        this.username = username;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;
@@ -46,15 +54,15 @@ public class UserModel {
         return email;
     }
 
-    public void setEmail(String mail) {
-        this.email = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getTel() {
-        return tel;
+    public String getPassword() {
+        return password;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
