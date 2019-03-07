@@ -23,6 +23,6 @@ public interface AmphinoteApi  {
                                 @Field("lastname") String lastname,
                                 @Field("username") String username,
                                 @Field("password") String password,
-                                @Field("age") Integer age);
+                                @Field("age") String age);
     }
 

@@ -35,13 +35,20 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void Signin(){
-        Integer age =  Integer.parseInt(registerActivityBinding.age.getText().toString());
+        String age =  registerActivityBinding.age.getText().toString();
         String usermail = registerActivityBinding.mail.getText().toString();
         String lastname = registerActivityBinding.nom.getText().toString();
         String password = registerActivityBinding.pwd.getText().toString();
         String username = registerActivityBinding.prenom.getText().toString();
 
+        if(age.equals("") || usermail.equals("") || lastname.equals("")|| password.equals("")|| username.equals("")){
+
+            Toast.makeText(RegisterActivity.this,"Veuillez entrer tout les champs",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Gson gson = new GsonBuilder()
+                .serializeNulls()
                 .setLenient()
                 .create();
 
@@ -57,12 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if(!response.isSuccessful()){
-                if (response.code()==403) {
-                    Toast.makeText(RegisterActivity.this,"Cet email existe deja",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(RegisterActivity.this,"Veuillez rentrer toute les champs ",Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(RegisterActivity.this,"L'email est deja utilisé",Toast.LENGTH_SHORT).show();
                     return;
                 }
                     UserModel UserResponse = response.body();
@@ -75,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this,"Serveur inaccessible"+t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this,"Serveur inaccessible "+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
