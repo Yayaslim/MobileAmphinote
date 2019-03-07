@@ -6,8 +6,7 @@ public class UserModel {
     private String username;
     private String lastname;
     private Integer age;
-    @SerializedName("email")
-    private String mail;
+    private String email;
     private String tel;
     private Integer id;
 
@@ -43,12 +42,12 @@ public class UserModel {
         this.age = age;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public String getTel() {

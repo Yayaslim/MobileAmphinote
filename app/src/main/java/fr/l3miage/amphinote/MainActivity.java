@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textViewResult = findViewById(R.id.text_view_result);
+/*        textViewResult = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.2.201/amphinote/")
@@ -60,6 +60,6 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<List<UserModel>> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
-        });
+        });*/
     }
 }
