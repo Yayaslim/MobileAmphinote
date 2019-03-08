@@ -6,6 +6,11 @@
     <data>
         <variable
             name="User"
+            type="fr.l3miage.amphinote.model.UserModel">
+
+        </variable>
+        <variable
+            name="Layout"
             type="fr.l3miage.amphinote.UserAreaActivity">
 
         </variable>
