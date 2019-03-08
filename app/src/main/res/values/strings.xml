@@ -6,11 +6,14 @@
     <string name="logo_description">Logo Amphinote</string>
     <string name="name">Prenom</string>
     <string name="lastname">Nom</string>
-    <string name="age">Age</string>
-    <string name="mail">Adresse Mail</string>
+    <string name="age">Âge</string>
+    <string name="tel">Numéro de téléphone</string>
+    <string name="mail">Adresse e-mail</string>
     <string name="welcolme_message">Bonjour</string>
     <string name="user_password">Ceci est votre mot de passe %1$s</string>
     <string name="user_mail">Ceci est votre mail %1$s</string>
 
+    <!-- Test Fabien-->
 
+    <string name="twitterUsername">\@Neosset9</string>
 </resources>
