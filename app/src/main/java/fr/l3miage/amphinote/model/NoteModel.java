@@ -1,17 +1,29 @@
 package fr.l3miage.amphinote.model;
 
+import fr.l3miage.amphinote.utils.Serveur;
+
 public class NoteModel {
 
     private String image;
     private String description;
     private Integer note;
     private String titre;
-    private String userid;
+    private Integer userid;
     private Integer id;
+
+    public NoteModel(String image, String titre) {
+        this.image = image;
+        this.titre = titre;
+    }
 
     public String getImage() {
         return image;
     }
+
+    public String getPath(){
+        return Serveur.url+image;
+    }
+
 
     public void setImage(String image) {
         this.image = image;
@@ -41,11 +53,11 @@ public class NoteModel {
         this.titre = titre;
     }
 
-    public String getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
@@ -56,4 +68,5 @@ public class NoteModel {
     public void setId(Integer id) {
         this.id = id;
     }
+
 }

@@ -17,6 +17,7 @@ import java.util.List;
 
 import fr.l3miage.amphinote.databinding.LoginActivityBinding;
 import fr.l3miage.amphinote.model.UserModel;
+import fr.l3miage.amphinote.utils.Serveur;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,19 +53,18 @@ public class LoginActivity extends AppCompatActivity {
 
     protected void authentication(){
 
-        String usermail = login_binding.usermail.getText().toString();
-        String password = login_binding.userpassword.getText().toString();
-        String base = usermail + ":" +password;
-        String authHeader = "Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
+        UserModel userModel= new UserModel();
+        userModel.setEmail(login_binding.usermail.getText().toString());
+        userModel.setPassword(login_binding.userpassword.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.14/amphinote/")
+                .baseUrl(Serveur.url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
 
-        Call<UserModel> call = amphinoteApi.getUserdata(authHeader,usermail);
+        Call<UserModel> call = amphinoteApi.getUserdata(userModel.getAuth(),userModel.getEmail());
         call.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {

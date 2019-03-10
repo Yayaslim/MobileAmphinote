@@ -16,6 +16,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface AmphinoteApi  {
 
@@ -36,5 +37,7 @@ public interface AmphinoteApi  {
                                 @Part MultipartBody.Part photo,
                                 @Part ("userid") Integer userid
                                 );
+        @GET("NoteRest.php")
+        Call<List<NoteModel>> getNote(@QueryMap Map<String,Object> query);
     }
 

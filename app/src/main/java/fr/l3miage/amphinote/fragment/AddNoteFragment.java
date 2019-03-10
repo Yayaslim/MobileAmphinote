@@ -11,20 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.l3miage.amphinote.AmphinoteApi;
 import fr.l3miage.amphinote.ImagePicker;
 import fr.l3miage.amphinote.R;
 import fr.l3miage.amphinote.databinding.FragmentAddNoteBinding;
 import fr.l3miage.amphinote.model.NoteModel;
+import fr.l3miage.amphinote.utils.Serveur;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -52,12 +53,10 @@ public class AddNoteFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_note, container, false);
         onPickImage(container);
-        final Integer userid = getArguments().getInt("userid");
-        Toast.makeText(getContext(),"user id : "+userid,Toast.LENGTH_LONG).show();
         binding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SendNote(userid);
+                SendNote();
             }
         });
         return binding.getRoot();
@@ -82,10 +81,10 @@ public class AddNoteFragment extends Fragment {
     }
 
 
-    public void SendNote(Integer userid){
+    public void SendNote(){
 
         File file = new File(Environment.getExternalStorageDirectory()
-                + File.separator + binding.editTitle.getText().toString().replaceAll("//s+","_")
+                + File.separator + binding.editTitle.getText().toString().replaceAll("[^a-zA-Z0-9 ]", "")
                 +getArguments().getInt("userid")
                 +".png");
 
@@ -112,7 +111,7 @@ catch (IOException o){
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.14/amphinote/")
+                .baseUrl(Serveur.url)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -123,7 +122,11 @@ catch (IOException o){
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageupload", file.getName(), reqFile);
 
         AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
-        Call<NoteModel> call = amphinoteApi.setNote(title_part,desc_part,body,getArguments().getInt("userid"));
+        Call<NoteModel> call = amphinoteApi.setNote(title_part,
+                                                    desc_part,
+                                                    body,getArguments().getInt("userid"));
+
+
         call.enqueue(new Callback<NoteModel>() {
             @Override
             public void onResponse(Call<NoteModel> call, Response<NoteModel> response) {

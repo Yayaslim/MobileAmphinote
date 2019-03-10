@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
 <FrameLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,17 +10,9 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="fr.l3miage.amphinote.UserAreaActivity">
 
-<android.support.v7.widget.CardView
-    android:layout_gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/background">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:srcCompat="@mipmap/logo_amphinote" />
-</android.support.v7.widget.CardView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/card_view_recycler_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
+</layout>

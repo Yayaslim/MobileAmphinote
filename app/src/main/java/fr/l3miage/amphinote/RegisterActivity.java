@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fr.l3miage.amphinote.databinding.RegisterActivityBinding;
 import fr.l3miage.amphinote.model.UserModel;
+import fr.l3miage.amphinote.utils.Serveur;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.14/amphinote/")
+                .baseUrl(Serveur.url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

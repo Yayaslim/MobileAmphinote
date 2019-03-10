@@ -60,6 +60,21 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<List<UserModel>> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
-        });*/
+        });
+
+
+        if(carItemList == null)
+        {
+            carItemList = new ArrayList<NoteModel>();
+            carItemList.add(new NoteModel("https://pngimage.net/wp-content/uploads/2018/06/imagenes-random-png-3.png", "Son1"));
+            carItemList.add(new NoteModel("https://pngimage.net/wp-content/uploads/2018/06/imagenes-random-png-3.png", "Messi1"));
+            carItemList.add(new NoteModel("https://pngimage.net/wp-content/uploads/2018/06/imagenes-random-png-3.png", "Salah1"));
+            carItemList.add(new NoteModel(Serveur.url+"profil/heungmin.png", "Son2"));
+            carItemList.add(new NoteModel(Serveur.url+"profil/messi.png", "Messi2"));
+            carItemList.add(new NoteModel(Serveur.url+"profil/heungmin.png", "Son3"));
+        }
+    }*/
     }
+
+
 }

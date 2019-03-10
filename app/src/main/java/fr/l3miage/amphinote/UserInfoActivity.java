@@ -14,12 +14,12 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import fr.l3miage.amphinote.model.UserModel;
+import fr.l3miage.amphinote.utils.Serveur;
 
 
 public class UserInfoActivity extends AppCompatActivity {
 
     ActivityUserInfoBinding activityUserInfoBinding;
-    private UserModel userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class UserInfoActivity extends AppCompatActivity {
         SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("UserModel", "");
-        userModel = gson.fromJson(json, UserModel.class);
-        Picasso.get().load("http://192.168.0.14/amphinote/"+userModel.getPhoto()).into(activityUserInfoBinding.profileImage);
-        Toast.makeText(UserInfoActivity.this,"Bonjour "+userModel.getUsername()+" : "+userModel.getLastname(),Toast.LENGTH_LONG).show();
+        UserModel userModel = gson.fromJson(json, UserModel.class);
+
+        Picasso.get().load(Serveur.url+userModel.getPhoto()).into(activityUserInfoBinding.profileImage);
         activityUserInfoBinding.setUser(userModel);
 
     }

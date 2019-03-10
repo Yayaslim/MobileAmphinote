@@ -1,5 +1,7 @@
 package fr.l3miage.amphinote.model;
 
+import android.util.Base64;
+
 import com.google.gson.annotations.SerializedName;
 
 public class UserModel {
@@ -65,5 +67,10 @@ public class UserModel {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getAuth(){
+        String base = email + ":" +password;
+        return "Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
     }
 }

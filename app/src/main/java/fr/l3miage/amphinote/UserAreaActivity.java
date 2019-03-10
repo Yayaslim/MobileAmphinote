@@ -40,8 +40,10 @@ public class UserAreaActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = mPrefs.getString("UserModel", "");
         userModel = gson.fromJson(json, UserModel.class);
+
         bundle = new Bundle();
         bundle.putInt("userid", userModel.getId());
+
         userAreaBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_area);
         userAreaBinding.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -81,7 +83,9 @@ public class UserAreaActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    showFragment(new HomeFragment());
+                    HomeFragment homeFragment = new HomeFragment();
+                    homeFragment.setArguments(bundle);
+                    showFragment(homeFragment);
                     return true;
                 case R.id.add_note:
                     AddNoteFragment addNoteFragment = new AddNoteFragment();
@@ -104,5 +108,6 @@ public class UserAreaActivity extends AppCompatActivity {
                 .replace(R.id.content, fragment)
                 .commit();
     }
+
 
 }
