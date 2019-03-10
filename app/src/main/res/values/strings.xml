@@ -12,6 +12,7 @@
     <string name="welcolme_message">Bonjour</string>
     <string name="user_password">Ceci est votre mot de passe %1$s</string>
     <string name="user_mail">Ceci est votre mail %1$s</string>
+    <string name="pick_image_intent_text">Veuillez choisir une Note</string>
 
     <!-- Test Fabien-->
 

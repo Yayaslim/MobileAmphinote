@@ -1,30 +1,41 @@
 package fr.l3miage.amphinote;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import fr.l3miage.amphinote.databinding.ActivityUserAreaBinding;
 import fr.l3miage.amphinote.fragment.AddNoteFragment;
 import fr.l3miage.amphinote.fragment.HomeFragment;
 import fr.l3miage.amphinote.fragment.YourNoteFragment;
-
+import fr.l3miage.amphinote.model.UserModel;
 public class UserAreaActivity extends AppCompatActivity {
 
     ActivityUserAreaBinding userAreaBinding;
+    UserModel userModel;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
+
+        SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("UserModel", "");
+        userModel = gson.fromJson(json, UserModel.class);
+        bundle = new Bundle();
+        bundle.putInt("userid", userModel.getId());
         userAreaBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_area);
         userAreaBinding.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -46,7 +57,9 @@ public class UserAreaActivity extends AppCompatActivity {
                     showFragment(new HomeFragment());
                     return true;
                 case R.id.add_note:
-                    showFragment(new AddNoteFragment());
+                    AddNoteFragment addNoteFragment = new AddNoteFragment();
+                    addNoteFragment.setArguments(bundle);
+                    showFragment(addNoteFragment);
 
                     return true;
                 case R.id.your_note:
@@ -64,4 +77,5 @@ public class UserAreaActivity extends AppCompatActivity {
                 .replace(R.id.content, fragment)
                 .commit();
     }
+
 }
