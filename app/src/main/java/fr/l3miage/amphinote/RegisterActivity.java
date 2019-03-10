@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.2.201/amphinote/")
+                .baseUrl("http://192.168.0.14/amphinote/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

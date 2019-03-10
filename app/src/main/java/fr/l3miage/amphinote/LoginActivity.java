@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         String authHeader = "Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.2.201/amphinote/")
+                .baseUrl("http://192.168.0.14/amphinote/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

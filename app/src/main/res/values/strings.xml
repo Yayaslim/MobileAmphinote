@@ -4,7 +4,7 @@
     <string name="login_button">Se connecter</string>
     <string name="create_account_button">Creer un Compte</string>
     <string name="logo_description">Logo Amphinote</string>
-    <string name="name">Prenom</string>
+    <string name="name">Prénom</string>
     <string name="lastname">Nom</string>
     <string name="age">Âge</string>
     <string name="tel">Numéro de téléphone</string>
@@ -14,6 +14,8 @@
     <string name="user_mail">Ceci est votre mail %1$s</string>
 
     <!-- Test Fabien-->
-
+    <string name="action_settings">Paramètres</string>
     <string name="twitterUsername">\@Neosset9</string>
+
+
 </resources>

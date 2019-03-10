@@ -26,14 +26,38 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:background="@color/colorAccent">
+                android:background="@color/colorAccent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <LinearLayout
                     android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical" />
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/showSettings"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="75dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:onClick="onClick"
+                        android:text="Montrer les settings"
+                        android:textColor="#FFF">
+
+                    </Button>
+
+                    <TextView
+                        android:id="@+id/txtInfo"
+                        android:layout_width="459dp"
+                        android:layout_height="267dp"
+                        android:layout_below="@+id/showSettings"
+                        android:layout_marginTop="30dp"
+                        android:text="Large Text"
+                        android:textColor="@color/colorPrimaryDark" />
+                </LinearLayout>
+
 
             </android.support.v4.widget.NestedScrollView>
 
@@ -48,8 +72,8 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_scrollFlags="scroll|enterAlways"
-                    android:background="@color/background">
+                    android:background="@color/background"
+                    app:layout_scrollFlags="scroll|enterAlways">
 
                     <ImageView
                         android:id="@+id/tv_header_title"
@@ -61,8 +85,9 @@
                         android:id="@+id/profile_icon"
                         android:layout_width="?attr/actionBarSize"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_profile_icon"
-                        android:clickable="true"/>
+                        android:layout_gravity="end"
+                        android:clickable="true"
+                        android:src="@drawable/ic_profile_icon" />
 
                 </android.support.v7.widget.Toolbar>
 
