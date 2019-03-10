@@ -1,6 +1,8 @@
 package fr.l3miage.amphinote;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.service.autofill.UserData;
@@ -8,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         login_binding = DataBindingUtil.setContentView(this, R.layout.login_activity);
 
+
         login_binding.createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         login_binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 authentication();
             }
         });
@@ -67,7 +73,15 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 UserModel User = response.body();
-                Toast.makeText(LoginActivity.this,"Bonjour "+ User.getUsername() ,Toast.LENGTH_SHORT).show();
+
+                SharedPreferences  mPrefs = getApplicationContext().getSharedPreferences("UserInfo",MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(User);
+                prefsEditor.putString("UserModel", json);
+                prefsEditor.apply();
+
+                Toast.makeText(LoginActivity.this,"Bonjour "+ json ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, UserAreaActivity.class));
             }
 
