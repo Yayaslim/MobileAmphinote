@@ -31,14 +31,16 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int i) {
 
         viewHolder.tv_android.setText(noteModels.get(i).getTitre());
         Picasso.get().load(noteModels.get(i).getPath()).into(viewHolder.img_android);
         viewHolder.img_android.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(view.getContext(), NoteActivity.class));
+                Intent intent =new Intent(view.getContext(), NoteActivity.class);
+                intent.putExtra("Note",noteModels.get(i));
+                context.startActivity(intent);
             }
         });
 

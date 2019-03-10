@@ -1,8 +1,12 @@
 package fr.l3miage.amphinote.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 import fr.l3miage.amphinote.utils.Serveur;
 
-public class NoteModel {
+public class NoteModel implements Serializable {
 
     private String image;
     private String description;

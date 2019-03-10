@@ -4,73 +4,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    tools:context="fr.l3miage.amphinote.UserAreaActivity">
-
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@color/colorAccent"
+            tools:context="fr.l3miage.amphinote.UserAreaActivity">
 
-                <EditText
-                    android:id="@+id/editTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:ems="10"
-                    android:singleLine="true"
-                    android:text="Titre"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:layout_constraintBottom_toTopOf="@+id/note"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/note"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background"
-                    android:contentDescription="Votre Note"
-                    app:layout_constraintBottom_toTopOf="@+id/editdesc"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTitle"
-                    app:srcCompat="@mipmap/logo_amphinote" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/editdesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginBottom="60dp"
-                    android:ems="10"
-                    android:inputType="textWebEditText"
-                    android:selectAllOnFocus="false"
-                    android:text="description"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:layout_constraintBottom_toTopOf="@+id/send"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <EditText
+                            android:id="@+id/editTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:singleLine="true"
+                            android:text="Titre"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
 
-                <Button
-                    android:id="@+id/send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="32dp"
-                    android:text="Envoyé !"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/note"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background"
+                            android:contentDescription="Votre Note"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/editTitle"
+                            app:srcCompat="@mipmap/logo_amphinote" />
 
-</FrameLayout>
+                        <EditText
+                            android:id="@+id/editdesc"
+                            android:layout_width="0dp"
+                            android:layout_height="94dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="32dp"
+                            android:ems="10"
+                            android:inputType="textWebEditText"
+                            android:selectAllOnFocus="false"
+                            android:text="description"
+                            android:textColor="@color/colorPrimaryDark"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/note" />
+
+                        <Button
+                            android:id="@+id/send"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="Envoyé !"
+                            android:textColor="@color/colorPrimaryDark"
+                            app:layout_constraintBottom_toBottomOf="@+id/note"
+                            app:layout_constraintEnd_toEndOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+        </FrameLayout>
 
 </layout>

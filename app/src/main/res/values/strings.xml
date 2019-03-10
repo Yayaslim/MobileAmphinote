@@ -18,5 +18,7 @@
     <string name="action_settings">Paramètres</string>
     <string name="twitterUsername">\@Neosset9</string>
 
-
+    <string name="get_scroll_position">getScrollPosition():</string>
+    <string name="get_zoomed_rect">getZoomedRect():</string>
+    <string name="get_current_zoom">getCurrentZoom():</string>
 </resources>

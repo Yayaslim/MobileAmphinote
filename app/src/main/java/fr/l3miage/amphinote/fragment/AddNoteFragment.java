@@ -71,7 +71,11 @@ public class AddNoteFragment extends Fragment {
         switch(requestCode) {
             case PICK_IMAGE_ID:
                 bitmap = ImagePicker.getImageFromResult(getContext(), resultCode, data);
+                if(bitmap==null){
+                    binding.note.setImageResource(R.mipmap.logo_amphinote);
+                }else{
                 binding.note.setImageBitmap(bitmap);
+                }
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
@@ -82,6 +86,10 @@ public class AddNoteFragment extends Fragment {
 
 
     public void SendNote(){
+        if (bitmap==null){
+            Toast.makeText(getContext(),"Veuillez choisir une Image",Toast.LENGTH_LONG).show();
+            return;
+        }
 
         File file = new File(Environment.getExternalStorageDirectory()
                 + File.separator + binding.editTitle.getText().toString().replaceAll("[^a-zA-Z0-9 ]", "")
