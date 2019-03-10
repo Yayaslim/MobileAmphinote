@@ -1,6 +1,7 @@
 package fr.l3miage.amphinote;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,12 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
 
         viewHolder.tv_android.setText(noteModels.get(i).getTitre());
         Picasso.get().load(noteModels.get(i).getPath()).into(viewHolder.img_android);
+        viewHolder.img_android.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(view.getContext(), NoteActivity.class));
+            }
+        });
 
     }
 

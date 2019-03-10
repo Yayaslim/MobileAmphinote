@@ -94,7 +94,9 @@ public class UserAreaActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.your_note:
-                    showFragment(new YourNoteFragment());
+                    YourNoteFragment yourNoteFragment = new YourNoteFragment();
+                    yourNoteFragment.setArguments(bundle);
+                    showFragment(yourNoteFragment);
                     return true;
             }
             return false;

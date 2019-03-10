@@ -24,6 +24,7 @@ import fr.l3miage.amphinote.R;
 import fr.l3miage.amphinote.RegisterActivity;
 import fr.l3miage.amphinote.databinding.FragmentHomeBinding;
 import fr.l3miage.amphinote.model.NoteModel;
+import fr.l3miage.amphinote.utils.NoteRequestViewer;
 import fr.l3miage.amphinote.utils.Serveur;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,64 +33,26 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
-    FragmentHomeBinding binding;
+
+    private FragmentHomeBinding binding;
     private NoteRecyclerViewDataAdapter adapter;
 
     public HomeFragment() {
         // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        initializeNote();
-        // Set data adapter.
-        return binding.getRoot();
-    }
-
-    private void initializeNote() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Serveur.url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
-
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("userid", getArguments().getInt("userid"));
 
-        Call<List<NoteModel>> call = amphinoteApi.getNote(map);
-
-        call.enqueue(new Callback<List<NoteModel>>() {
-            @Override
-            public void onResponse(Call<List<NoteModel>> call, Response<List<NoteModel>> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(getContext(), "ERREUR", Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
-                generateNoteList(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<NoteModel>> call, Throwable t) {
-                Toast.makeText(getContext(), "Serveur inaccessible " + t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+        NoteRequestViewer requestViewer = new NoteRequestViewer(map,getContext(),adapter,binding.cardViewRecyclerList);
+        requestViewer.initializeNote();
+        return binding.getRoot();
     }
 
-    private void generateNoteList(List<NoteModel> empDataList) {
-
-        adapter = new NoteRecyclerViewDataAdapter(getContext(),empDataList);
-
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
-
-        binding.cardViewRecyclerList.setLayoutManager(layoutManager);
-
-        binding.cardViewRecyclerList.setAdapter(adapter);
-    }
 
 }
 

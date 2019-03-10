@@ -17,8 +17,7 @@
             android:id="@+id/card_view_image"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:onClick="GotoNote"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/card_view_image_title"
