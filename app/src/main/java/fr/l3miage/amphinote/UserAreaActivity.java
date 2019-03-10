@@ -46,7 +46,6 @@ public class UserAreaActivity extends AppCompatActivity {
 
         bundle = new Bundle();
         bundle.putInt("userid", userModel.getId());
-
         userAreaBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_area);
         userAreaBinding.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -56,6 +55,9 @@ public class UserAreaActivity extends AppCompatActivity {
                 startActivity(new Intent(UserAreaActivity.this, UserInfoActivity.class));
             }
         });
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setArguments(bundle);
+        showFragment(homeFragment);
         /*
         showSettings = (Button) findViewById(R.id.showSettings);
         txtInfo = (TextView) findViewById(R.id.txtInfo);
