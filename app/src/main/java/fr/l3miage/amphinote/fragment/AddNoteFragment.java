@@ -84,13 +84,13 @@ public class AddNoteFragment extends Fragment {
 
     public void SendNote(Integer userid){
 
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+        File file = new File(Environment.getExternalStorageDirectory()
                 + File.separator + binding.editTitle.getText().toString().replaceAll("//s+","_")
                 +getArguments().getInt("userid")
                 +".png");
 
         Bitmap bit = bitmap;
-        Toast.makeText(getContext(), Environment.getExternalStorageDirectory().getAbsolutePath(),Toast.LENGTH_SHORT).show();
+
 try {
             file.createNewFile();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
