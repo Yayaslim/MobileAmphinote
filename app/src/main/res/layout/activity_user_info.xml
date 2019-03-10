@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="User"
+            type="fr.l3miage.amphinote.model.UserModel">
+
+        </variable>
+    </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -37,21 +44,22 @@
                     android:clickable="true"
                     android:layout_gravity="end"
                     />
-
             </android.support.v7.widget.Toolbar>
+
             <RelativeLayout
                 android:id="@+id/imgUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/toolbarProfile"
                 android:background="@drawable/circle_border">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profile_image"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/profile" />
+                    />
                 <!-- <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
@@ -72,7 +80,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15sp"
                 android:fontFamily="sans-serif-light"
-                android:text="Fabien LE TRUNG"
+                android:text="@{User.username}"
                 android:textColor="@color/white"
                 android:textSize="32sp" />
 
@@ -130,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="letrungfabien@gmail.com"
+                        android:text="@{User.email}"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -200,34 +208,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Facebook"
-                        android:textColor="@color/headings"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/blabloubli"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -246,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="72 ans"
+                        android:text="@{Integer.toString(safeUnbox(User.age))}"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 

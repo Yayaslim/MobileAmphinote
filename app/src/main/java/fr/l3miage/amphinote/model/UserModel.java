@@ -9,14 +9,7 @@ public class UserModel {
     private String email;
     private String password;
     private Integer id;
-
-    public UserModel(String username, String lastname, Integer age, String email, String password) {
-        this.username = username;
-        this.lastname = lastname;
-        this.age = age;
-        this.email = email;
-        this.password = password;
-    }
+    private String photo;
 
     public String getUsername() {
         return username;
@@ -64,5 +57,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
