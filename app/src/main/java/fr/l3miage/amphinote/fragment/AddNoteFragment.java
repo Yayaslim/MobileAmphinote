@@ -136,7 +136,8 @@ catch (IOException o){
         AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
         Call<NoteModel> call = amphinoteApi.setNote(title_part,
                                                     desc_part,
-                                                    body,getArguments().getInt("userid"),
+                                                    body,
+                                                    getArguments().getInt("userid"),
                                                     subject_part);
 
 
