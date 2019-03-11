@@ -7,56 +7,84 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
-            tools:context="fr.l3miage.amphinote.UserAreaActivity">
+            tools:context="fr.l3miage.amphinote.UserAreaActivity"
+            android:background="@color/colorPrimary">
 
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                        <EditText
-                            android:id="@+id/editTitle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:singleLine="true"
-                            android:text="Titre"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="packed" />
+                    <Spinner
+                        android:id="@+id/planets_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="51dp"
+                        android:layout_marginBottom="41dp"
+                        android:entries="@array/subjects_array"
+                        android:prompt="@string/subjects_prompt"
+                        app:layout_constraintBottom_toTopOf="@+id/note"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
-                        <ImageView
-                            android:id="@+id/note"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/background"
-                            android:contentDescription="Votre Note"
-                            android:scaleType="fitXY"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/editTitle"
-                            app:srcCompat="@mipmap/logo_amphinote" />
+                    <EditText
+                        android:id="@+id/editTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorAccent"
+                        android:ems="10"
+                        android:hint="  Titre"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textColorHint="#b2b9c4"
+                        android:textSize="18sp"
+                        android:textStyle="italic"
+                        android:typeface="serif"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
 
-                        <EditText
-                            android:id="@+id/editdesc"
-                            android:layout_width="0dp"
-                            android:layout_height="94dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="32dp"
-                            android:ems="10"
-                            android:inputType="textWebEditText"
-                            android:selectAllOnFocus="false"
-                            android:text="description"
-                            android:textColor="@color/colorPrimaryDark"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/note" />
+                    <ImageView
+                        android:id="@+id/note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background"
+                        android:contentDescription="Votre Note"
+                        android:scaleType="fitXY"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/planets_spinner"
+                        app:srcCompat="@mipmap/logo_amphinote" />
+
+                    <EditText
+                        android:id="@+id/editdesc"
+                        android:layout_width="0dp"
+                        android:layout_height="88dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="50dp"
+                        android:background="@color/colorAccent"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:hint="  Description"
+                        android:inputType="textWebEditText"
+                        android:selectAllOnFocus="false"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textColorHint="#b2b9c4"
+                        android:textStyle="italic"
+                        android:typeface="serif"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/note" />
 
                         <Button
                             android:id="@+id/send"

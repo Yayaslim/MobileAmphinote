@@ -33,7 +33,7 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
 
-        viewHolder.tv_android.setText(noteModels.get(i).getTitre());
+        viewHolder.tv_android.setText(noteModels.get(i).getDenomination());
         Picasso.get().load(noteModels.get(i).getPath()).into(viewHolder.img_android);
         viewHolder.img_android.setOnClickListener(new View.OnClickListener() {
             @Override

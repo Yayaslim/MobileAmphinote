@@ -14,10 +14,24 @@ public class NoteModel implements Serializable {
     private String titre;
     private Integer userid;
     private Integer id;
+    private Integer aime;
+    private String matiere;
 
-    public NoteModel(String image, String titre) {
-        this.image = image;
-        this.titre = titre;
+
+    public Integer getAime() {
+        return aime;
+    }
+
+    public void setAime(Integer aime) {
+        this.aime = aime;
+    }
+
+    public String getMatiere() {
+        return matiere;
+    }
+
+    public void setMatiere(String matiere) {
+        this.matiere = matiere;
     }
 
     public String getImage() {
@@ -71,6 +85,10 @@ public class NoteModel implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDenomination(){
+        return "["+this.matiere+"] - "+this.titre;
     }
 
 }

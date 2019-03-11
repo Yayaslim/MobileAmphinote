@@ -35,7 +35,8 @@ public interface AmphinoteApi  {
         Call<NoteModel> setNote(@Part ("titre") RequestBody titre,
                                 @Part ("description")RequestBody description,
                                 @Part MultipartBody.Part photo,
-                                @Part ("userid") Integer userid
+                                @Part ("userid") Integer userid,
+                                @Part ("matiere") RequestBody matiere
                                 );
         @GET("NoteRest.php")
         Call<List<NoteModel>> getNote(@QueryMap Map<String,Object> query);

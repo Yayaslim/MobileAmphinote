@@ -25,6 +25,7 @@ import fr.l3miage.amphinote.ImagePicker;
 import fr.l3miage.amphinote.R;
 import fr.l3miage.amphinote.databinding.FragmentAddNoteBinding;
 import fr.l3miage.amphinote.model.NoteModel;
+import fr.l3miage.amphinote.utils.CustomOnItemSelectedListener;
 import fr.l3miage.amphinote.utils.Serveur;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -59,6 +60,7 @@ public class AddNoteFragment extends Fragment {
                 SendNote();
             }
         });
+        binding.planetsSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
         return binding.getRoot();
     }
     public void onPickImage(View view) {
@@ -83,6 +85,8 @@ public class AddNoteFragment extends Fragment {
         }
 
     }
+
+
 
 
     public void SendNote(){
@@ -123,7 +127,7 @@ catch (IOException o){
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
+        RequestBody subject_part = RequestBody.create(MultipartBody.FORM,binding.planetsSpinner.getSelectedItem().toString());
         RequestBody desc_part = RequestBody.create(MultipartBody.FORM,binding.editdesc.getText().toString());
         RequestBody title_part = RequestBody.create(MultipartBody.FORM,binding.editTitle.getText().toString());
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
@@ -132,7 +136,8 @@ catch (IOException o){
         AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
         Call<NoteModel> call = amphinoteApi.setNote(title_part,
                                                     desc_part,
-                                                    body,getArguments().getInt("userid"));
+                                                    body,getArguments().getInt("userid"),
+                                                    subject_part);
 
 
         call.enqueue(new Callback<NoteModel>() {

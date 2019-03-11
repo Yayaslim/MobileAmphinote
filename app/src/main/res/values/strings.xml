@@ -21,4 +21,20 @@
     <string name="get_scroll_position">getScrollPosition():</string>
     <string name="get_zoomed_rect">getZoomedRect():</string>
     <string name="get_current_zoom">getCurrentZoom():</string>
+
+
+
+        <string name="subjects_prompt">Matiere</string>
+
+        <string-array name="subjects_array">
+            <item>Mathematiques</item>
+            <item>Biologie</item>
+            <item>Informatique</item>
+            <item>Droit</item>
+            <item>Physique</item>
+            <item>Chimie</item>
+            <item>Histoire</item>
+            <item>Economie</item>
+        </string-array>
+
 </resources>
