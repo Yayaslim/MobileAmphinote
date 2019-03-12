@@ -94,9 +94,14 @@
                         android:clickable="true"
                         android:src="@drawable/ic_profile_icon" />
 
+                    <SearchView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/search_bar"/>
                 </android.support.v7.widget.Toolbar>
 
             </android.support.design.widget.AppBarLayout>
+
 
         </android.support.design.widget.CoordinatorLayout>
 

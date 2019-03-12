@@ -15,10 +15,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import fr.l3miage.amphinote.databinding.ActivityUserAreaBinding;
 import fr.l3miage.amphinote.fragment.AddNoteFragment;
@@ -55,10 +59,37 @@ public class UserAreaActivity extends AppCompatActivity {
                 startActivity(new Intent(UserAreaActivity.this, UserInfoActivity.class));
             }
         });
-        HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(bundle);
-        showFragment(homeFragment);
+        showFragment(new HomeFragment());
 
+
+        userAreaBinding.searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+
+
+
+        KeyboardVisibilityEvent.setEventListener(
+                UserAreaActivity.this,
+                new KeyboardVisibilityEventListener() {
+                    @Override
+                    public void onVisibilityChanged(boolean isOpen) {
+                        if (isOpen){
+                            userAreaBinding.navigationView.setVisibility(View.INVISIBLE);
+                        }else{
+                            userAreaBinding.navigationView.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -68,20 +99,14 @@ public class UserAreaActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    HomeFragment homeFragment = new HomeFragment();
-                    homeFragment.setArguments(bundle);
-                    showFragment(homeFragment);
+                    showFragment(new HomeFragment());
                     return true;
                 case R.id.add_note:
-                    AddNoteFragment addNoteFragment = new AddNoteFragment();
-                    addNoteFragment.setArguments(bundle);
-                    showFragment(addNoteFragment);
+                    showFragment(new AddNoteFragment());
 
                     return true;
                 case R.id.your_note:
-                    YourNoteFragment yourNoteFragment = new YourNoteFragment();
-                    yourNoteFragment.setArguments(bundle);
-                    showFragment(yourNoteFragment);
+                    showFragment(new YourNoteFragment());
                     return true;
             }
             return false;
@@ -90,6 +115,7 @@ public class UserAreaActivity extends AppCompatActivity {
     };
 
     private void showFragment(Fragment fragment) {
+        fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content, fragment)
