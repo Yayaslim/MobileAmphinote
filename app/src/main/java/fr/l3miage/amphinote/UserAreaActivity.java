@@ -24,9 +24,12 @@ import com.google.gson.Gson;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
+import java.util.HashMap;
+
 import fr.l3miage.amphinote.databinding.ActivityUserAreaBinding;
 import fr.l3miage.amphinote.fragment.AddNoteFragment;
 import fr.l3miage.amphinote.fragment.HomeFragment;
+import fr.l3miage.amphinote.fragment.SearchFragment;
 import fr.l3miage.amphinote.fragment.YourNoteFragment;
 import fr.l3miage.amphinote.model.UserModel;
 public class UserAreaActivity extends AppCompatActivity {
@@ -65,7 +68,8 @@ public class UserAreaActivity extends AppCompatActivity {
         userAreaBinding.searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
+                bundle.putString("Query",s);
+                showFragment(new SearchFragment());
                 return false;
             }
 
