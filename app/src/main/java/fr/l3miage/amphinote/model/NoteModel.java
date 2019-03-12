@@ -10,19 +10,19 @@ public class NoteModel implements Serializable {
 
     private String image;
     private String description;
-    private Integer note;
     private String titre;
     private Integer userid;
     private Integer id;
-    private Integer aime;
+    @SerializedName("aime")
+    private int aime;
     private String matiere;
 
 
-    public Integer getAime() {
+    public int getAime() {
         return aime;
     }
 
-    public void setAime(Integer aime) {
+    public void setAime(int aime) {
         this.aime = aime;
     }
 
@@ -53,14 +53,6 @@ public class NoteModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getNote() {
-        return note;
-    }
-
-    public void setNote(Integer note) {
-        this.note = note;
     }
 
     public String getTitre() {

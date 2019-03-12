@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+
 import java.util.List;
 import java.util.Map;
 import fr.l3miage.amphinote.AmphinoteApi;

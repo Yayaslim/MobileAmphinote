@@ -58,27 +58,7 @@ public class UserAreaActivity extends AppCompatActivity {
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setArguments(bundle);
         showFragment(homeFragment);
-        /*
-        showSettings = (Button) findViewById(R.id.showSettings);
-        txtInfo = (TextView) findViewById(R.id.txtInfo);
 
-
-        showSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                StringBuilder info = new StringBuilder();
-
-                info.append("Name : "+sharedPreferences.getString("key_full_name", " -1"));
-                info.append("\nEmail : "+sharedPreferences.getString("key_email", " -1"));
-                info.append("\nEnable sleep timer : "+sharedPreferences.getBoolean("enable_timer", false));
-                info.append("\nSleep timer : "+sharedPreferences.getString("key_sleep_timer", "-1"));
-                info.append("\nMusic Quality : "+sharedPreferences.getString("key_music_quality", "-1"));
-                info.append("\nTypes Of Music : "+sharedPreferences.getStringSet("music_type", null));
-
-                txtInfo.setText(info);
-            }
-        });*/
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

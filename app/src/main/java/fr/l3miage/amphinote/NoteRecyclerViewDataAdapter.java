@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.l3miage.amphinote.model.NoteModel;
@@ -34,6 +33,7 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
 
         viewHolder.tv_android.setText(noteModels.get(i).getDenomination());
+        viewHolder.like.setText(String.valueOf(noteModels.get(i).getAime()));
         Picasso.get().load(noteModels.get(i).getPath()).into(viewHolder.img_android);
         viewHolder.img_android.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +54,14 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView tv_android;
         ImageView img_android;
+        TextView like;
         public ViewHolder(View view) {
             super(view);
 
             tv_android = (TextView)view.findViewById(R.id.card_view_image_title);
             img_android = (ImageView)view.findViewById(R.id.card_view_image);
+            like = (TextView)view.findViewById(R.id.indicator);
+
         }
     }
 
