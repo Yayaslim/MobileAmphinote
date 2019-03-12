@@ -45,7 +45,7 @@ public class NoteRequestViewer {
             @Override
             public void onResponse(Call<List<NoteModel>> call, Response<List<NoteModel>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(context, "ERREUR", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Aucune Note trouver", Toast.LENGTH_SHORT).show();
                     return;
 
                 }

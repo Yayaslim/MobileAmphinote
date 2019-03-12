@@ -5,11 +5,13 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import fr.l3miage.amphinote.databinding.ActivityNoteBinding;
 import fr.l3miage.amphinote.model.NoteModel;
+import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import fr.l3miage.amphinote.model.UserModel;
 import fr.l3miage.amphinote.utils.Serveur;
 import retrofit2.Call;
@@ -39,7 +41,24 @@ public class NoteActivity extends AppCompatActivity {
         binding.title.setText(noteModel.getTitre());
         binding.desc.setText(noteModel.getDescription());
         isLiked();
+
+        binding.notePerso.setOnPhotoTapListener(new OnPhotoTapListener() {
+            @Override
+            public void onPhotoTap(ImageView view, float x, float y) {
+                if (binding.desc.getVisibility() == View.VISIBLE) {
+                    binding.desc.setVisibility(View.INVISIBLE);
+                    binding.title.setVisibility(View.INVISIBLE);
+                    binding.button.setVisibility(View.INVISIBLE);
+                } else {
+                    binding.desc.setVisibility(View.VISIBLE);
+                    binding.title.setVisibility(View.VISIBLE);
+                    binding.button.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
+
+
 
     public void Like(View arg0){
         Retrofit retrofit = new Retrofit.Builder()
@@ -56,7 +75,7 @@ public class NoteActivity extends AppCompatActivity {
                     return;
                 }
                 liked=response.body();
-                binding.textView2.setText(display(liked));
+                display(liked);
             }
 
             @Override
@@ -86,7 +105,7 @@ public class NoteActivity extends AppCompatActivity {
                     return;
                 }
                 liked=response.body();
-                binding.textView2.setText(display(liked));
+                display(liked);
             }
 
             @Override
@@ -97,12 +116,13 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
-    public String display(Integer integer){
+    public void display(Integer integer){
         if(integer == -1) {
-            return "Is not liked";
+            binding.button.setImageDrawable(getResources().getDrawable(R.drawable.ic_not_like));
+            return;
         }else
-            {
-            return "Is liked";
+            { binding.button.setImageDrawable(getResources().getDrawable(R.drawable.ic_like));
+            return;
         }
     }
 
