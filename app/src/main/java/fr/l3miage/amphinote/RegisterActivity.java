@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    //The Sign In function, Use Retrofit and Post method to send info
     protected void Signin(){
         String age =  registerActivityBinding.age.getText().toString();
         String usermail = registerActivityBinding.mail.getText().toString();

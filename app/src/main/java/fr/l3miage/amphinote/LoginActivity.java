@@ -80,14 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                 String json = gson.toJson(User);
                 prefsEditor.putString("UserModel", json);
                 prefsEditor.apply();
-
-                Toast.makeText(LoginActivity.this,"Bonjour "+ json ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, UserAreaActivity.class));
             }
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
-                Toast.makeText(LoginActivity.this,"Serveur inaccessible"+t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,"Serveur inaccessible "+t.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });

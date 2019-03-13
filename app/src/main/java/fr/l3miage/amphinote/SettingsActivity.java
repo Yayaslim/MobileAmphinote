@@ -33,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
 
+        //Getting the User Info from the SharedPreference and transforming them into an Object
         SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("UserModel", "");

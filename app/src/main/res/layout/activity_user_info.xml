@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="User"
+            name="InfoUser"
             type="fr.l3miage.amphinote.model.UserModel">
 
         </variable>
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".UserInfoActivity">
@@ -80,7 +79,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15sp"
                 android:fontFamily="sans-serif-light"
-                android:text="@{User.username}"
                 android:textColor="@color/white"
                 android:textSize="32sp" />
 
@@ -138,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="@{User.email}"
+                        android:text="@{InfoUser.email}"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -159,7 +157,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tel"
+                        android:text="@string/name"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
 
@@ -167,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="06 66 14 43 42"
+                        android:text="@{InfoUser.username}"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -188,7 +186,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Twitter"
+                        android:text="@string/lastname"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
 
@@ -196,7 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="@string/twitterUsername"
+                        android:text="@{InfoUser.lastname}"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -226,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="@{Integer.toString(safeUnbox(User.age))}"
+                        android:text="@{Integer.toString(safeUnbox(InfoUser.age))}"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 

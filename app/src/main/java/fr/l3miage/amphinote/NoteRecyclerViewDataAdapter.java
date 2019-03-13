@@ -17,9 +17,9 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     private List<NoteModel> noteModels;
     private Context context;
 
-    public NoteRecyclerViewDataAdapter(Context context, List android_versions) {
+    public NoteRecyclerViewDataAdapter(Context context, List noteModels) {
         this.context = context;
-        this.noteModels = android_versions;
+        this.noteModels = noteModels;
 
     }
 
@@ -32,10 +32,10 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
 
-        viewHolder.tv_android.setText(noteModels.get(i).getDenomination());
+        viewHolder.tv_model.setText(noteModels.get(i).getDenomination());
         viewHolder.like.setText(String.valueOf(noteModels.get(i).getAime()));
-        Picasso.get().load(noteModels.get(i).getPath()).into(viewHolder.img_android);
-        viewHolder.img_android.setOnClickListener(new View.OnClickListener() {
+        Picasso.get().load(noteModels.get(i).getPath()).into(viewHolder.img_model);
+        viewHolder.img_model.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(view.getContext(), NoteActivity.class);
@@ -52,14 +52,14 @@ public class NoteRecyclerViewDataAdapter extends RecyclerView.Adapter<NoteRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_android;
-        ImageView img_android;
+        TextView tv_model;
+        ImageView img_model;
         TextView like;
         public ViewHolder(View view) {
             super(view);
 
-            tv_android = (TextView)view.findViewById(R.id.card_view_image_title);
-            img_android = (ImageView)view.findViewById(R.id.card_view_image);
+            tv_model = (TextView)view.findViewById(R.id.card_view_image_title);
+            img_model = (ImageView)view.findViewById(R.id.card_view_image);
             like = (TextView)view.findViewById(R.id.indicator);
 
         }

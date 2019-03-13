@@ -39,13 +39,17 @@ public class UserInfoActivity extends AppCompatActivity {
             }
         });
 
+        //Getting the User Info from the SharedPreference and transforming them into an Object
         SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("UserModel", "");
         UserModel userModel = gson.fromJson(json, UserModel.class);
+        activityUserInfoBinding.tvName.setText(userModel.getDenomination());
 
+        //Display a Image into a Image view from a URL
         Picasso.get().load(Serveur.url+userModel.getPhoto()).into(activityUserInfoBinding.profileImage);
-        activityUserInfoBinding.setUser(userModel);
+
+        activityUserInfoBinding.setInfoUser(userModel);
 
     }
 }

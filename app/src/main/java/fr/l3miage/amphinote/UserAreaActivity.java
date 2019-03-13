@@ -32,11 +32,11 @@ public class UserAreaActivity extends AppCompatActivity {
     private Bundle bundle;
     private Integer sort = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
-
         SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("UserModel", "");
@@ -57,7 +57,7 @@ public class UserAreaActivity extends AppCompatActivity {
         showFragment(new HomeFragment());
 
 
-
+        //Assign a query, a search to a bundle that will be handled by the fragments
         userAreaBinding.searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -75,7 +75,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
 
 
-
+        //When the Keybord is displayed, the Navigation bar is hidden
         KeyboardVisibilityEvent.setEventListener(
                 UserAreaActivity.this,
                 new KeyboardVisibilityEventListener() {
@@ -90,6 +90,7 @@ public class UserAreaActivity extends AppCompatActivity {
                 });
     }
 
+    //Assign a fragment to each item in the Bottom Navigation View
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -111,6 +112,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
     };
 
+    // Display a Fragment and assign a bundle
     private void showFragment(Fragment fragment) {
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -119,6 +121,7 @@ public class UserAreaActivity extends AppCompatActivity {
                 .commit();
     }
 
+    //When User press the back button that means he wants to disconnect
     @Override
     public void onBackPressed(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -141,6 +144,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
     }
 
+    //Function that handle the Spinner of Sorting
     public void Spinner(View arg0){
         PopupMenu popup = new PopupMenu(UserAreaActivity.this,userAreaBinding.imageView3 );
         popup.getMenuInflater().inflate(R.menu.spinner, popup.getMenu());
@@ -157,6 +161,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
     }
 
+    //Depending on the result of sort the this function assign Query specification to the Bundle
     public void Sort(){
         switch (sort){
             case 1: bundle.putString("Filter","aime");

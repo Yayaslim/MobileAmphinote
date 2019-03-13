@@ -73,4 +73,7 @@ public class UserModel {
         String base = email + ":" +password;
         return "Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
     }
+    public String getDenomination(){
+        return this.lastname+" "+this.getUsername();
+    }
 }
