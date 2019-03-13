@@ -3,9 +3,11 @@ package fr.l3miage.amphinote.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import fr.l3miage.amphinote.utils.Serveur;
-
 public class NoteModel implements Serializable {
 
     private String image;
@@ -16,6 +18,7 @@ public class NoteModel implements Serializable {
     @SerializedName("aime")
     private int aime;
     private String matiere;
+    private String date_ajout;
 
 
     public int getAime() {
@@ -83,4 +86,11 @@ public class NoteModel implements Serializable {
         return "["+this.matiere+"] - "+this.titre;
     }
 
+    public String getDate_ajout() {
+        return date_ajout;
+    }
+
+    public void setDate_ajout(String date_ajout) {
+        this.date_ajout = date_ajout;
+    }
 }

@@ -64,6 +64,10 @@ public class UserAreaActivity extends AppCompatActivity {
                 if(sort==1){
                     bundle.putString("Filter","aime");
                     bundle.putString("Order","DESC");
+
+                }else if (sort==2){
+                    bundle.putString("Filter","date_ajout");
+                    bundle.putString("Order","DESC");
                 }else {
                     bundle.putString("Filter","Rand()");
                     bundle.putString("Order","DESC");
