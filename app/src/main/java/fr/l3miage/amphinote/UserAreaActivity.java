@@ -43,8 +43,7 @@ public class UserAreaActivity extends AppCompatActivity {
         UserModel userModel = gson.fromJson(json, UserModel.class);
         bundle = new Bundle();
         bundle.putString("Query","");
-        bundle.putString("Filter","Rand()");
-        bundle.putString("Order","DESC");
+        Sort();
         userAreaBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_area);
         userAreaBinding.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -57,21 +56,12 @@ public class UserAreaActivity extends AppCompatActivity {
         showFragment(new HomeFragment());
 
 
+
         userAreaBinding.searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 bundle.putString("Query",s);
-                if(sort==1){
-                    bundle.putString("Filter","aime");
-                    bundle.putString("Order","DESC");
-
-                }else if (sort==2){
-                    bundle.putString("Filter","date_ajout");
-                    bundle.putString("Order","DESC");
-                }else {
-                    bundle.putString("Filter","Rand()");
-                    bundle.putString("Order","DESC");
-                }
+                Sort();
                 showFragment(new HomeFragment());
                 return false;
             }
@@ -110,7 +100,6 @@ public class UserAreaActivity extends AppCompatActivity {
                     return true;
                 case R.id.add_note:
                     showFragment(new AddNoteFragment());
-
                     return true;
                 case R.id.your_note:
                     showFragment(new YourNoteFragment());
@@ -157,12 +146,26 @@ public class UserAreaActivity extends AppCompatActivity {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                Toast.makeText(UserAreaActivity.this,String.valueOf(menuItem.getOrder()),Toast.LENGTH_LONG).show();
                 sort=menuItem.getOrder();
+                Sort();
+                showFragment(new HomeFragment());
                 return true;
             }
         });
         popup.show();
 
+    }
+
+    public void Sort(){
+        switch (sort){
+            case 1: bundle.putString("Filter","aime");
+                    bundle.putString("Order","DESC");
+                    return;
+            case 2: bundle.putString("Filter","date_ajout");
+                    bundle.putString("Order","DESC");
+                    return;
+            default:bundle.putString("Filter","Rand()");
+                    bundle.putString("Order","");
+        }
     }
 }
