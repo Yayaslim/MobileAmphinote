@@ -23,8 +23,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    ActivitySettingsBinding binding;
-    UserModel userModel;
+    private ActivitySettingsBinding binding;
+    private UserModel userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

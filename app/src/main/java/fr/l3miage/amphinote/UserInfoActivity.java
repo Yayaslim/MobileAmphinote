@@ -19,14 +19,12 @@ import fr.l3miage.amphinote.utils.Serveur;
 
 public class UserInfoActivity extends AppCompatActivity {
 
-    ActivityUserInfoBinding activityUserInfoBinding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        activityUserInfoBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_info);
+        ActivityUserInfoBinding activityUserInfoBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_info);
         activityUserInfoBinding.settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

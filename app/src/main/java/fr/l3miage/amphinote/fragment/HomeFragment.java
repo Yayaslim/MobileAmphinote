@@ -46,7 +46,9 @@ public class HomeFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userid", getArguments().getInt("userid"));
+        map.put("search", getArguments().getString("Query"));
+        map.put("order", getArguments().getString("Order"));
+        map.put("filter", getArguments().getString("Filter"));
 
         NoteRequestViewer requestViewer = new NoteRequestViewer(map,getContext(),adapter,binding.cardViewRecyclerList);
         requestViewer.initializeNote();

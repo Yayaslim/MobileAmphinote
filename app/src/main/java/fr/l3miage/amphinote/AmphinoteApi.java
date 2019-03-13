@@ -41,15 +41,14 @@ public interface AmphinoteApi  {
                                 @Part ("userid") Integer userid,
                                 @Part ("matiere") RequestBody matiere
                                 );
-    @FormUrlEncoded
-    @POST("NoteRest.php")
-    Call<Integer> setLike(@Field("aime") Integer aime,
-                            @Field("userid") Integer userid,
-                            @Field("noteid") Integer noteid);
-    @GET("NoteRest.Php")
-    Call<Integer> getLike(
-                          @Query("userid") Integer userid,
-                          @Query("noteid") Integer noteid);
+        @FormUrlEncoded
+        @POST("NoteRest.php")
+        Call<Integer> setLike(@Field("aime") Integer aime,
+                              @Field("userid") Integer userid,
+                              @Field("noteid") Integer noteid);
+        @GET("NoteRest.Php")
+        Call<Integer> getLike(@Query("userid") Integer userid,
+                              @Query("noteid") Integer noteid);
 
         @GET("NoteRest.php")
         Call<List<NoteModel>> getNote(@QueryMap Map<String,Object> query);

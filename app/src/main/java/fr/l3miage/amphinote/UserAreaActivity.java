@@ -1,11 +1,9 @@
 package fr.l3miage.amphinote;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,9 +13,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -25,22 +21,16 @@ import com.google.gson.Gson;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
-import java.util.HashMap;
-
 import fr.l3miage.amphinote.databinding.ActivityUserAreaBinding;
 import fr.l3miage.amphinote.fragment.AddNoteFragment;
 import fr.l3miage.amphinote.fragment.HomeFragment;
-import fr.l3miage.amphinote.fragment.SearchFragment;
 import fr.l3miage.amphinote.fragment.YourNoteFragment;
 import fr.l3miage.amphinote.model.UserModel;
 public class UserAreaActivity extends AppCompatActivity {
 
-    ActivityUserAreaBinding userAreaBinding;
-
-    Button showSettings;
-    TextView txtInfo;
-    UserModel userModel;
-    Bundle bundle;
+    private ActivityUserAreaBinding userAreaBinding;
+    private Bundle bundle;
+    private Integer sort = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +40,11 @@ public class UserAreaActivity extends AppCompatActivity {
         SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("UserModel", "");
-        userModel = gson.fromJson(json, UserModel.class);
-
+        UserModel userModel = gson.fromJson(json, UserModel.class);
         bundle = new Bundle();
-        bundle.putInt("userid", userModel.getId());
+        bundle.putString("Query","");
+        bundle.putString("Filter","Rand()");
+        bundle.putString("Order","DESC");
         userAreaBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_area);
         userAreaBinding.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -70,7 +61,14 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 bundle.putString("Query",s);
-                showFragment(new SearchFragment());
+                if(sort==1){
+                    bundle.putString("Filter","aime");
+                    bundle.putString("Order","DESC");
+                }else {
+                    bundle.putString("Filter","Rand()");
+                    bundle.putString("Order","DESC");
+                }
+                showFragment(new HomeFragment());
                 return false;
             }
 
@@ -155,7 +153,8 @@ public class UserAreaActivity extends AppCompatActivity {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                Toast.makeText(UserAreaActivity.this,"You Clicked : " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserAreaActivity.this,String.valueOf(menuItem.getOrder()),Toast.LENGTH_LONG).show();
+                sort=menuItem.getOrder();
                 return true;
             }
         });

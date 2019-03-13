@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RegisterActivity extends AppCompatActivity {
-    RegisterActivityBinding registerActivityBinding;
+    private RegisterActivityBinding registerActivityBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

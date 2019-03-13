@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
-    LoginActivityBinding login_binding;
+    private LoginActivityBinding login_binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
