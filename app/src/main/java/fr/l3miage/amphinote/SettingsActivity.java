@@ -1,101 +1,144 @@
 package fr.l3miage.amphinote;
 
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.RingtonePreference;
+import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import fr.l3miage.amphinote.databinding.ActivitySettingsBinding;
+import fr.l3miage.amphinote.model.UserModel;
+import fr.l3miage.amphinote.utils.Serveur;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    ActivitySettingsBinding binding;
+    UserModel userModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
+
+        SharedPreferences mPrefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("UserModel", "");
+        userModel = gson.fromJson(json, UserModel.class);
+        binding.setSetting(userModel);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //Load setting fragment
-        getFragmentManager().beginTransaction().replace(android.R.id.content,
-                new MainSettingsFragment()).commit();
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public static class MainSettingsFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preferences);
 
-            bindSummaryValue(findPreference("key_full_name"));
-            bindSummaryValue(findPreference("key_email"));
-            bindSummaryValue(findPreference("key_sleep_timer"));
-            bindSummaryValue(findPreference("key_music_quality"));
-            bindSummaryValue(findPreference("key_notification_ringtone"));
-        }
-    }
+    public void ChangeEmail(View arg0){
+        Gson gson = new GsonBuilder()
+                .serializeNulls()
+                .setLenient()
+                .create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Serveur.url)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        String Query ="{\"email\" : \""+binding.changeMail.getText().toString()+"\"}";
+        Toast.makeText(SettingsActivity.this,Query,Toast.LENGTH_LONG).show();
+        AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
+        Call<UserModel> call = amphinoteApi.changeUser(userModel.getId(),Query);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(SettingsActivity.this, "ERREUR", Toast.LENGTH_SHORT).show();
+                    return;
 
-    private static void bindSummaryValue(Preference preference){
-        preference.setOnPreferenceChangeListener(listener);
-        listener.onPreferenceChange(preference,
-                PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(),""));
-    }
-
-    private static Preference.OnPreferenceChangeListener listener = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            String stringValue = newValue.toString();
-            if (preference instanceof ListPreference) {
-                ListPreference listPreference = (ListPreference) preference;
-                int index = listPreference.findIndexOfValue(stringValue);
-                //Set the summary to reflect the new value
-                preference.setSummary(index >= 0
-                        ? listPreference.getEntries()[index]
-                        : null);
-            } else if (preference instanceof EditTextPreference) {
-                preference.setSummary(stringValue);
-            } else if (preference instanceof RingtonePreference) {
-                if (TextUtils.isEmpty(stringValue)) {
-                    //no ringtone
-                    preference.setSummary("Silent");
-                } else {
-                    Ringtone ringtone = RingtoneManager.getRingtone(preference.getContext(),
-                            Uri.parse(stringValue));
-
-                    if (ringtone == null) {
-                        //clear the summary
-                        preference.setSummary("Choose notification ringtone");
-                    } else {
-                        String name = ringtone.getTitle(preference.getContext());
-                        preference.setSummary(name);
-                    }
                 }
+                UserModel User = response.body();
+
+                SharedPreferences  mPrefs = getApplicationContext().getSharedPreferences("UserInfo",MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(User);
+                prefsEditor.putString("UserModel", json);
+                prefsEditor.apply();
+
+                Toast.makeText(SettingsActivity.this,"Bonjour "+ json ,Toast.LENGTH_SHORT).show();
             }
-            return false;
-        }
-    };
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+                Toast.makeText(SettingsActivity.this,"Serveur inaccessible "+t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    public void ChangePass(View arg0){
+        Gson gson = new GsonBuilder()
+                .serializeNulls()
+                .setLenient()
+                .create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Serveur.url)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        String Query ="{\"password\" : \""+binding.changePass.getText().toString()+"\"}";
+        Toast.makeText(SettingsActivity.this,Query,Toast.LENGTH_LONG).show();
+        AmphinoteApi amphinoteApi = retrofit.create(AmphinoteApi.class);
+        Call<UserModel> call = amphinoteApi.changeUser(userModel.getId(),Query);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(SettingsActivity.this, "ERREUR", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
+                UserModel User = response.body();
+
+                SharedPreferences  mPrefs = getApplicationContext().getSharedPreferences("UserInfo",MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(User);
+                prefsEditor.putString("UserModel", json);
+                prefsEditor.apply();
+
+                Toast.makeText(SettingsActivity.this,"Bonjour "+ json ,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+                Toast.makeText(SettingsActivity.this,"Serveur inaccessible "+t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 }
+
+

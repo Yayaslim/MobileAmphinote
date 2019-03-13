@@ -22,20 +22,22 @@
     <string name="get_zoomed_rect">getZoomedRect():</string>
     <string name="get_current_zoom">getCurrentZoom():</string>
 
+    <string name="account">COMPTE </string>
+    <string name="change_mail">Changer votre adresse e-mail</string>
+    <string name="change_pass">Changer votre mot de passe</string>
+    <string name="valider">Valider</string>
+    <string name="subjects_prompt">Matiere</string>
 
-
-        <string name="subjects_prompt">Matiere</string>
-
-        <string-array name="subjects_array">
-            <item>Mathematiques</item>
-            <item>Biologie</item>
-            <item>Informatique</item>
-            <item>Droit</item>
-            <item>Physique</item>
-            <item>Chimie</item>
-            <item>Histoire</item>
-            <item>Economie</item>
-        </string-array>
+    <string-array name="subjects_array">
+        <item>Mathematiques</item>
+        <item>Biologie</item>
+        <item>Informatique</item>
+        <item>Droit</item>
+        <item>Physique</item>
+        <item>Chimie</item>
+        <item>Histoire</item>
+        <item>Economie</item>
+    </string-array>
 
     <string-array name="sort">
         <item>Populaires</item>
