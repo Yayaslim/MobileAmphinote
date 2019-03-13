@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.view.View;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -148,4 +149,17 @@ public class UserAreaActivity extends AppCompatActivity {
 
     }
 
+    public void Spinner(View arg0){
+        PopupMenu popup = new PopupMenu(UserAreaActivity.this,userAreaBinding.imageView3 );
+        popup.getMenuInflater().inflate(R.menu.spinner, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                Toast.makeText(UserAreaActivity.this,"You Clicked : " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        popup.show();
+
+    }
 }
