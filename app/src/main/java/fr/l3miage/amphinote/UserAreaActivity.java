@@ -43,6 +43,7 @@ public class UserAreaActivity extends AppCompatActivity {
         UserModel userModel = gson.fromJson(json, UserModel.class);
         bundle = new Bundle();
         bundle.putString("Query","");
+        bundle.putInt("userid",userModel.getId());
         Sort();
         userAreaBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_area);
         userAreaBinding.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

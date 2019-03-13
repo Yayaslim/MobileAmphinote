@@ -18,6 +18,7 @@ public class NoteModel implements Serializable {
     @SerializedName("aime")
     private int aime;
     private String matiere;
+    @SerializedName("date_ajout")
     private String date_ajout;
 
 
