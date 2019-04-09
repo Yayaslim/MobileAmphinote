@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="Accueil"/>
+
+    <item
+        android:id="@+id/your_note"
+        android:icon="@drawable/ic_your_note"
+        android:title="Vos Notes"/>
+
+    <item
+        android:id="@+id/add_note"
+        android:icon="@drawable/ic_add_note"
+        android:title="Ajouter"/>
+</menu>

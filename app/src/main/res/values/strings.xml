@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">Amphinote</string>
+    <string name="password">Mot de Passe</string>
+    <string name="login_button">Se connecter</string>
+    <string name="create_account_button">Creer un Compte</string>
+    <string name="logo_description">Logo Amphinote</string>
+    <string name="name">Prénom</string>
+    <string name="lastname">Nom</string>
+    <string name="age">Âge</string>
+    <string name="tel">Numéro de téléphone</string>
+    <string name="mail">Adresse e-mail</string>
+    <string name="welcolme_message">Bonjour</string>
+    <string name="user_password">Ceci est votre mot de passe %1$s</string>
+    <string name="user_mail">Ceci est votre mail %1$s</string>
+    <string name="pick_image_intent_text">Veuillez choisir une Note</string>
+
+    <!-- Test Fabien-->
+    <string name="action_settings">Paramètres</string>
+    <string name="twitterUsername">\@Neosset9</string>
+
+    <string name="get_scroll_position">getScrollPosition():</string>
+    <string name="get_zoomed_rect">getZoomedRect():</string>
+    <string name="get_current_zoom">getCurrentZoom():</string>
+
+    <string name="account">COMPTE </string>
+    <string name="change_mail">Changer votre adresse e-mail</string>
+    <string name="change_pass">Changer votre mot de passe</string>
+    <string name="valider">Valider</string>
+    <string name="subjects_prompt">Matiere</string>
+
+    <string-array name="subjects_array">
+        <item>Mathematiques</item>
+        <item>Biologie</item>
+        <item>Informatique</item>
+        <item>Droit</item>
+        <item>Physique</item>
+        <item>Chimie</item>
+        <item>Histoire</item>
+        <item>Economie</item>
+    </string-array>
+
+    <string-array name="sort">
+        <item>Populaires</item>
+        <item>Recents</item>
+    </string-array>
 </resources>
